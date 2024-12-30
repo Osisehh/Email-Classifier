@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Email Classifier📨</h1>
+        <form action="/predict" method="POST">
+            <label for="message">Enter your email message:</label>
+            <textarea id="message" name="message" placeholder="Paste your email here..." required>{{ message }}</textarea>
+            <button type="submit">Classify</button>
+        </form>
+
+        {% if prediction is not none %}
+            <div class="result">
+                <p><strong>Prediction:</strong> 
+                    {% if prediction == 1 %}
+                        <span class="spam">Spam❌</span>
+                    {% else %}
+                        <span class="not-spam">Not Spam✅</span>
+                    {% endif %}
+                </p>
+            </div>
+        {% endif %}
+    </div>
+
+</body>
+</html>
